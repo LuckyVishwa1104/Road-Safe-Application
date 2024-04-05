@@ -12,6 +12,11 @@ class ComplaintServices{
         return Complaintdetails;
     }
 
+    static async deleteComplaint(id){
+        const deleted = await ComplaintModel.findOneAndDelete({_id:id});
+        return deleted;
+    }
+
 }
 
 module.exports = ComplaintServices;

@@ -4,6 +4,8 @@ const ComplaintController = require("../controller/complaint.controller");
 
 router.post('/complaintDetails',ComplaintController.raiseComplaint);
 
-router.get('/getComplaintDetail',ComplaintController.getComplaintDetails);
+router.post('/getComplaintDetail',ComplaintController.getComplaintDetails);
+
+router.post('/deleteComplaint',ComplaintController.deleteComplaint);
 
 module.exports = router;

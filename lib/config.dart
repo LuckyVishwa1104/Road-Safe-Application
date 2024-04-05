@@ -5,3 +5,7 @@ final registration = url + "registration";
 final login = url + 'login';
 
 final complaintDetails = url + 'complaintDetails';
+
+final getComplaintData = url + 'getComplaintDetail';
+
+final deleteComplaints = url + 'deleteComplaint';
