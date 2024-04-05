@@ -39,7 +39,7 @@ dependencies:
   shared_preferences:
   jwt_decoder:  
   flutter_slidable: 
-  velocity_x: 
+  intl:
 
 dev_dependencies:
   flutter_lints: ^2.0.0

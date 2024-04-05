@@ -168,6 +168,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
 //  Uint8List byte = selectedImage.readAsBytes();
+  late final result;
 
   Future yolov8(io.File imageFile) async {
     Uint8List byte = await imageFile.readAsBytes();
@@ -181,7 +182,7 @@ class _DashboardState extends State<Dashboard> {
     print(imageHeight);
     print(imageWidth);
 
-    final result = await vision.yoloOnImage(
+    result = await vision.yoloOnImage(
         bytesList: byte,
         imageHeight: imageHeight,
         imageWidth: imageWidth,
@@ -189,11 +190,11 @@ class _DashboardState extends State<Dashboard> {
         confThreshold: 0.4,
         classThreshold: 0.5);
 
-    if (result.isNotEmpty) {
-      setState(() {
-        yoloResults = result;
-      });
-    }
+    // if (result.isNotEmpty) {
+    //   setState(() {
+    //     yoloResults = result;
+    //   });
+    // }
 
     if (result.isNotEmpty) {
       Navigator.pushReplacement(
@@ -210,6 +211,7 @@ class _DashboardState extends State<Dashboard> {
 
     print(result);
     print("Verification done !");
+    // print(yoloResults);
   }
 
   void raiseComplaint_() async {
@@ -218,7 +220,7 @@ class _DashboardState extends State<Dashboard> {
       "email": email,
       "image": "temp",
       "location": address,
-      "category": selectedChips,
+      "category": result[0]['tag'],
       "description": problemController.text
     };
 
@@ -396,8 +398,7 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
 
-              const SizedBox(
-                height: 10),
+              const SizedBox(height: 10),
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -413,8 +414,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
 
-              const SizedBox(
-                height: 10),
+              const SizedBox(height: 10),
 
               Center(
                 child: MaterialButton(
@@ -433,7 +433,7 @@ class _DashboardState extends State<Dashboard> {
                       yolov8(selectedImage!);
                     }
 
-                    print('raising complaint');             
+                    print('raising complaint');
                   },
                 ),
               ),

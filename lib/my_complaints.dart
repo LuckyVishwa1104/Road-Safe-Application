@@ -5,8 +5,8 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:road_safe_app/config.dart';
 import 'package:road_safe_app/utils/app_drawer.dart';
 import 'package:http/http.dart' as http;
-import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 
 class my_complaint extends StatefulWidget {
   final token;
@@ -128,7 +128,7 @@ class _my_complaintState extends State<my_complaint> {
                                 // borderOnForeground: false,
                                 child: ListTile(
                                   leading: Icon(Icons.task),
-                                  title: Text('${items![index]['_id']}'),
+                                  title: Text('Complaint Id : ${items![index]['_id']}'),
                                   subtitle: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -138,7 +138,8 @@ class _my_complaintState extends State<my_complaint> {
                                       Text('Address : ${items![index]['location']}'),
                                       Text('Category : ${items![index]['category'][0]}'),
                                       Text('Description : ${items![index]['description']}'),
-                                      Text('Date : ${items![index]['createdAt']}'),
+                                      // Text('Date : ${items![index]['createdAt']}'),
+                                      Text('Date : ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![index]['createdAt']).toLocal())}'),
                                     ],
                                   ),
                                   trailing: Icon(Icons.arrow_back),
