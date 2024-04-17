@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:typed_data';
-import 'dart:math';
+// import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_vision/flutter_vision.dart';
 import 'package:road_safe_app/complaint_status.dart';
 import 'package:road_safe_app/config.dart';
@@ -35,13 +36,18 @@ class _DashboardState extends State<Dashboard> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       selectedImage = io.File(returnedImage!.path);
-      final bytes = io.File(returnedImage.path).readAsBytesSync();
-      img64 = base64Encode(bytes);
+
+      // final bytes = io.File(returnedImage.path).readAsBytesSync();
+      // img64 = base64Encode(bytes);
     });
+
+    Uint8List imageData = await readImageFile(selectedImage!.path);
+    Uint8List compressedImageData = await compressImage(imageData, 50);
+    String base64String = imageToBase64(compressedImageData);
 
     // image controller
     print(selectedImage);
-    print(img64);
+    print(base64String); //Compressed string
     print("byte printed");
 
     // problem descripion
@@ -59,6 +65,25 @@ class _DashboardState extends State<Dashboard> {
     // image controller
     print(selectedImage);
     //
+  }
+
+  Future<Uint8List> readImageFile(String filePath) async {
+    io.File imageFile = io.File(filePath);
+    return await imageFile.readAsBytes();
+  }
+
+  // Function to compress image
+  Future<Uint8List> compressImage(Uint8List imageData, int quality) async {
+    List<int> compressedData = await FlutterImageCompress.compressWithList(
+      imageData,
+      quality: quality,
+    );
+    return Uint8List.fromList(compressedData);
+  }
+
+// Function to convert image to base64 string
+  String imageToBase64(Uint8List imageBytes) {
+    return base64Encode(imageBytes);
   }
 
   //gettingLocation
