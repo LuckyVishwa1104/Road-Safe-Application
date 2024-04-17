@@ -8,4 +8,6 @@ router.post('/getComplaintDetail',ComplaintController.getComplaintDetails);
 
 router.post('/deleteComplaint',ComplaintController.deleteComplaint);
 
+router.get('/getComplaintDetailAll',ComplaintController.getComplaintDetailsAll);
+
 module.exports = router;
