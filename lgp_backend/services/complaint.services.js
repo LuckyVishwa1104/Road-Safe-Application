@@ -12,6 +12,11 @@ class ComplaintServices{
         return Complaintdetails;
     }
 
+    static async getComplaintdetailsAll(){
+        const Complaintdetails = await ComplaintModel.find({});
+        return Complaintdetails;
+    }
+
     static async deleteComplaint(id){
         const deleted = await ComplaintModel.findOneAndDelete({_id:id});
         return deleted;

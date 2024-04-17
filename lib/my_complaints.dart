@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:road_safe_app/config.dart';
@@ -107,10 +106,10 @@ class _my_complaintState extends State<my_complaint> {
                               key: const ValueKey(0),
                               endActionPane: ActionPane(
                                 motion: const ScrollMotion(),
-                                dismissible:
-                                    DismissiblePane(onDismissed: () {
-                                      deleteItem('${items![index]['_id']}');
-                                    }),
+                                // dismissible:
+                                //     DismissiblePane(onDismissed: () {
+                                //       deleteItem('${items![index]['_id']}');
+                                //     }),
                                 children: [
                                   SlidableAction(
                                     backgroundColor: Color(0xFFFE4A49),
@@ -140,6 +139,18 @@ class _my_complaintState extends State<my_complaint> {
                                       Text('Description : ${items![index]['description']}'),
                                       // Text('Date : ${items![index]['createdAt']}'),
                                       Text('Date : ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![index]['createdAt']).toLocal())}'),
+                                      SizedBox(height: 8),
+                                      Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                        color: Colors.amber,
+                                        borderRadius: BorderRadius.circular(10), // Add border radius
+                                        ),
+                                        child: Text(
+                                          'Complaint raised!',
+                                          style: TextStyle(color: Colors.black),
+                                              ),
+                                    ),
                                     ],
                                   ),
                                   trailing: Icon(Icons.arrow_back),

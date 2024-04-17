@@ -26,6 +26,17 @@ exports.getComplaintDetails = async (req,res,next) =>{
     }
 }
 
+exports.getComplaintDetailsAll = async (req,res,next) =>{
+    try{
+        let complaint = await ComplaintServices.getComplaintdetailsAll();
+
+        res.json({status:true, success:complaint});
+    }
+    catch(error){
+        next(error);
+    }
+}
+
 exports.deleteComplaint = async (req,res,next) =>{
     try{
         const {id} = req.body;

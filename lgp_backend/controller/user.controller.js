@@ -16,7 +16,7 @@ exports.register = async(req,res,next) => {
 exports.login = async(req,res,next) => {
     try{
         const {email,password} = req.body;
-        // console.log("1st step")
+        console.log("1st step")
         const user =await UserService.checkuser(email);
         // console.log("2st step",user)
 
