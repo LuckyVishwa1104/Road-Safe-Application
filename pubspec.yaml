@@ -39,9 +39,7 @@ dependencies:
   location: ^5.0.3
   shared_preferences: null
   tflite_v2: ^1.0.0
-  shared_preferences:
-  jwt_decoder:  
-  flutter_slidable: 
+  flutter_slidable:
   intl:
 
 dev_dependencies:
