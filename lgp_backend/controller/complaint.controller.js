@@ -25,3 +25,14 @@ exports.getComplaintDetails = async (req,res,next) =>{
         next(error);
     }
 }
+
+exports.getComplaintDetailsAll = async (req,res,next) =>{
+    try{
+        let complaint = await ComplaintServices.getComplaintdetailsAll();
+
+        res.json({status:true, success:complaint});
+    }
+    catch(error){
+        next(error);
+    }
+}
